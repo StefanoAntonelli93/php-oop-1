@@ -47,6 +47,10 @@ class Movie
     }
     public function setVote(int $_vote): void
     {
+        if ($_vote < 1 || $_vote > 10) {
+            // sintassi per exception
+            throw new Exception('Il voto deve essere compreso tra 1 e 10.');
+        }
         $this->vote = $_vote;
     }
     public function getPlot(): string
