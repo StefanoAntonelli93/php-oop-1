@@ -97,7 +97,7 @@ try {
                         <!-- ciclo foreach itero per tutta la lungheza dell'array movie_list -->
                         <?php foreach ($movie_list as $movie) : ?>
                             <li>
-                                <p>Titolo: <?php echo $movie->getTitle(); ?></p>
+                                Titolo: <span class="fw-bold"><?php echo $movie->getTitle(); ?></span>
                             </li>
                             <li> Genere:
                                 <?php if (count($movie->getGenre())) : ?>
