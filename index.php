@@ -55,9 +55,8 @@ Donkey and Dragon enter, and Dragon eats Farquaad. Shrek and Fiona kiss and Fion
 
 
 // var_dump($movie1);
-
-// creo array di movie
-$movie_list = [$movie1, $movie2, $movie3, $movie4];
+// richiamo una volta sola l'array movie_list
+require_once __DIR__ . '/models/movie_list.php';
 
 ?>
 
