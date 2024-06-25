@@ -17,6 +17,8 @@ Oggi pomeriggio ripassate i primi concetti di classe, variabili e metodi d'istan
 
 Modificare la classe Movie in modo che accetti piú di un genere.
 
+<!-- uso array per indicare più generi -->
+
 ## Bonus 2:
 
 Creare un layout completo per stampare a schermo una lista di movies.
