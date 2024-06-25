@@ -25,7 +25,7 @@ try {
     // movie 2
     $movie2 = new Movie('Shrek 2', 2004);
     $movie2->setVote(8);
-    $movie2->setGenre('Animation');
+    $movie2->setGenre('Animation', 'Comedy');
     $movie2->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
     
     The lord needs Princess Fiona to marry him so he will become the king of Duloc. When Shrek and Donkey visit him, they are forced to rescue her from an enormous fire-breathing dragon named Dragon in exchange for Shrek\'s swamp being vacated. The Dragon turns out to be female, and after a minute or two falls in love with Donkey.
@@ -37,7 +37,7 @@ try {
     // movie 3
     $movie3 = new Movie('Shrek the Third', 2007);
     $movie3->setVote(7);
-    $movie3->setGenre('Animation');
+    $movie3->setGenre('Animation', 'Comedy');
     $movie3->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
     
     The lord needs Princess Fiona to marry him so he will become the king of Duloc. When Shrek and Donkey visit him, they are forced to rescue her from an enormous fire-breathing dragon named Dragon in exchange for Shrek\'s swamp being vacated. The Dragon turns out to be female, and after a minute or two falls in love with Donkey.
@@ -49,7 +49,7 @@ try {
     // movie 4
     $movie4 = new Movie('Shrek Forever After', 2010);
     $movie4->setVote(8);
-    $movie4->setGenre('Animation');
+    $movie4->setGenre('Animation', 'Family', 'Comedy');
     $movie4->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
     
     The lord needs Princess Fiona to marry him so he will become the king of Duloc. When Shrek and Donkey visit him, they are forced to rescue her from an enormous fire-breathing dragon named Dragon in exchange for Shrek\'s swamp being vacated. The Dragon turns out to be female, and after a minute or two falls in love with Donkey.
@@ -99,8 +99,11 @@ try {
                             <li>
                                 <p>Titolo: <?php echo $movie->getTitle(); ?></p>
                             </li>
-                            <li>
-                                <p>Genere: <?php echo $movie->getGenre(); ?></p>
+                            <li> Genere:
+                                <?php if (count($movie->getGenre())) : ?>
+                                    <!-- metodo implode per stampare generi separati da virgola -->
+                                    <span><?php echo implode(', ', $movie->getGenre()); ?></span>
+                                <?php endif; ?>
                             </li>
                             <li>
                                 <p>Voto: <?php echo $movie->getVote(); ?></p>

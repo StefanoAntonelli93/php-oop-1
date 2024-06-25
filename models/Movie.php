@@ -4,7 +4,8 @@ class Movie
     // varibili d'istanza
     private $title;
     private $age;
-    private $genre;
+    // genre diventa array per accettare piu generi
+    private $genre = [];
     private $vote;
     private $plot;
     // costruttore fornisce caratteristiche title  e age alle istanze
@@ -32,13 +33,13 @@ class Movie
         $this->age = $_age;
     }
     // metodo getter setter genre
-    public function getGenre(): string
+    public function getGenre(): array
     {
         return $this->genre;
     }
-    public function setGenre(string $_genre): void
+    public function setGenre(string ...$_genre): void
     {
-        $this->genre = $_genre;
+        $this->genre = [...$_genre];
     }
     // metodo getter setter vote
     public function getVote(): int
