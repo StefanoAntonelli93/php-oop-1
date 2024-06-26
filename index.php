@@ -13,7 +13,7 @@ try {
     // istanze
     // movie 1
 
-    $movie1 = new Movie('Shrek', 2001, $genre1, $cast1);
+    $movie1 = new Movie('Shrek', 2001, null, $cast1);
     $movie1->setVote(8);
     // $movie1->setGenre('Animation');
     $movie1->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
@@ -50,7 +50,7 @@ try {
     Donkey and Dragon enter, and Dragon eats Farquaad. Shrek and Fiona kiss and Fiona is permanently turned into an ogre. Shrek gets his swamp back, and the two marry there. After a karaoke party, the newlyweds set off on their honeymoon. ');
 
     // movie 4
-    $movie4 = new Movie('Shrek Forever After', 2010, $genre8, $cast4);
+    $movie4 = new Movie('Shrek Forever After', 2010, $genre8, null);
     $movie4->setVote(8);
     // $movie4->setGenre('Animation', 'Family', 'Comedy');
     $movie4->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
@@ -105,15 +105,24 @@ try {
                             </li>
                             <!-- inserisco actors separati da virgola con implode e ciclo if -->
                             <li>
-                                Cast:<?php if (count($movie->getCast()?->getActors())) : ?>
-                                <span><?php echo implode(', ', $movie->getCast()?->getActors()); ?></span>
-                            <?php endif ?>
+                                Cast:
+                                <?php
+                                // per far funzionare nullsafe creo variabile cast e genre fuori da count
+                                $cast = $movie->getCast();
+                                if ($cast && count($cast->getActors())) : ?>
+                                    <span><?php echo implode(', ', $cast->getActors()); ?></span>
+                                <?php else : ?>
+                                    N/A.
+                                <?php endif; ?>
                             </li>
                             <li> Genere:
-                                <?php if (count($movie->getGenre()?->getGenres())) : ?>
+                                <?php
+                                $genre = $movie->getGenre();
+                                if ($genre && count($genre->getGenres())) : ?>
                                     <!-- metodo implode per stampare generi separati da virgola -->
-                                    <!-- NULLSAFE OPERATOR (?) SE ESISTE ALLORA prendi getGenres altrimenti NULL-->
-                                    <span><?php echo implode(', ', $movie->getGenre()?->getGenres()); ?></span>
+                                    <span><?php echo implode(', ', $genre->getGenres()); ?></span>
+                                <?php else : ?>
+                                    N/A.
                                 <?php endif; ?>
                             </li>
                             <li>
