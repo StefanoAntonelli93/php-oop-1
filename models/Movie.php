@@ -5,14 +5,15 @@ class Movie
     private $title;
     private $age;
     // genre diventa array per accettare piu generi
-    private $genre = [];
+    private genre $genre;
     private $vote;
     private $plot;
     // costruttore fornisce caratteristiche title  e age alle istanze
-    public function __construct(string $_title, int $_age)
+    public function __construct(string $_title, int $_age, Genre $_genre)
     {
         $this->setTitle($_title);
         $this->setAge($_age);
+        $this->setGenre($_genre);
     }
     // metodo getter setter title
     public function getTitle(): string
@@ -33,14 +34,16 @@ class Movie
         $this->age = $_age;
     }
     // metodo getter setter genre
-    public function getGenre(): array
+    public function getGenre(): Genre
     {
         return $this->genre;
     }
-    public function setGenre(string ...$_genre): void
+
+    public function setGenre(Genre $_genre): void
     {
-        $this->genre = [...$_genre];
+        $this->genre = $_genre;
     }
+
     // metodo getter setter vote
     public function getVote(): int
     {

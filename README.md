@@ -28,7 +28,7 @@ Facciamo attenzione all’organizzazione del codice, suddividendolo in appositi 
 - mettendo ciascuna classe nel proprio file e magari raggruppare tutte le classi in una cartella dedicata che possiamo chiamare Models/
 - organizzando il layout dividendo la struttura ed i contenuti in file e parziali dedicati.
 
-# PARTE esercizio di oggi: PHP OOP Movies
+# PARTE 2 esercizio di oggi: PHP OOP Movies
 
 continuate l'esercitazione di ieri, stessa repository: php-oop-1
 
@@ -43,3 +43,10 @@ continuate l'esercitazione di ieri, stessa repository: php-oop-1
 - Provate a realizzare, come visto a lezione, una proprietà e un metodo statico;
 
 A domani, buon lavoro
+
+---
+
+     <?php if (count($movie->getGenre())) : ?>
+                                    <!-- metodo implode per stampare generi separati da virgola -->
+                                    <span><?php echo implode(', ', $movie->getGenre()); ?></span>
+                                <?php endif; ?>
