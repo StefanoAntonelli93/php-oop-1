@@ -1,8 +1,9 @@
 <?php
-// richiamo la classe Movie da Movie.php
+// richiamo le classi
 require_once __DIR__ . '/models/Movie.php';
 require_once __DIR__ . '/models/Genre.php';
 require_once __DIR__ . '/models/Actor.php';
+require_once __DIR__ . '/models/UpperCase.php';
 
 
 // messaggio di errore inizialmente è vuoto
@@ -10,6 +11,8 @@ $error = '';
 
 // try catch utili per trovare un errore
 try {
+
+
     // istanze
     // movie 1
 
@@ -61,7 +64,13 @@ try {
     
     Donkey and Dragon enter, and Dragon eats Farquaad. Shrek and Fiona kiss and Fiona is permanently turned into an ogre. Shrek gets his swamp back, and the two marry there. After a karaoke party, the newlyweds set off on their honeymoon. ');
 
-    // var_dump($movie1);
+    var_dump($movie1);
+    var_dump($movie2);
+    var_dump($movie3);
+    var_dump($movie4);
+
+    // stampo countId che è una proprietà statica di class Movie
+    echo Movie::getId();
 
     // richiamo una volta sola l'array movie_list
     require_once __DIR__ . '/models/movie_list.php';
@@ -117,10 +126,12 @@ try {
                             </li>
                             <li> Genere:
                                 <?php
+                                // per far funzionare nullsafe creo variabile cast e genre fuori da count
                                 $genre = $movie->getGenre();
                                 if ($genre && count($genre->getGenres())) : ?>
                                     <!-- metodo implode per stampare generi separati da virgola -->
-                                    <span><?php echo implode(', ', $genre->getGenres()); ?></span>
+                                    <!-- aggiungo metodo statico toUpperCase -->
+                                    <span><?php echo UpperCase::toUpperCase(implode(', ', $genre->getGenres()));  ?></span>
                                 <?php else : ?>
                                     N/A.
                                 <?php endif; ?>

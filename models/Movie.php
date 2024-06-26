@@ -1,17 +1,23 @@
 <?php
 class Movie
 {
+    // proprietà statica
+    private static int $countId = 1;
     // varibili d'istanza
-    private $title;
-    private $age;
+    private int $id;
+    private string $title;
+    private int $age;
     // genre diventa array per accettare piu generi
     private ?genre $genre;
-    private $vote;
-    private $plot;
+    private int $vote;
+    private string $plot;
     private ?actor $actor;
     // costruttore fornisce caratteristiche title  e age alle istanze
     public function __construct(string $_title, int $_age, ?genre $_genre, ?actor $_actor)
     {
+        // static
+        $this->id = self::$countId++;
+        // metodi
         $this->setTitle($_title);
         $this->setAge($_age);
         $this->setGenre($_genre);
@@ -77,5 +83,10 @@ class Movie
     public function setCast(?actor $_actor): void
     {
         $this->actor = $_actor;
+    }
+    //  funzione statica per prendere countId
+    public static function getId(): int
+    {
+        return self::$countId;
     }
 }
