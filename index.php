@@ -64,13 +64,13 @@ try {
     
     Donkey and Dragon enter, and Dragon eats Farquaad. Shrek and Fiona kiss and Fiona is permanently turned into an ogre. Shrek gets his swamp back, and the two marry there. After a karaoke party, the newlyweds set off on their honeymoon. ');
 
-    var_dump($movie1);
-    var_dump($movie2);
-    var_dump($movie3);
-    var_dump($movie4);
+    // var_dump($movie1);
+    // var_dump($movie2);
+    // var_dump($movie3);
+    // var_dump($movie4);
 
     // stampo countId che è una proprietà statica di class Movie
-    echo Movie::getId();
+    // echo Movie::getId();
 
     // richiamo una volta sola l'array movie_list
     require_once __DIR__ . '/models/movie_list.php';
@@ -113,25 +113,24 @@ try {
                                 Titolo: <span class="fw-bold"><?php echo $movie->getTitle(); ?></span>
                             </li>
                             <!-- inserisco actors separati da virgola con implode e ciclo if -->
-                            <li>
-                                Cast:
+                            <li> Cast:
                                 <?php
-                                // per far funzionare nullsafe creo variabile cast e genre fuori da count
-                                $cast = $movie->getCast();
-                                if ($cast && count($cast->getActors())) : ?>
-                                    <span><?php echo implode(', ', $cast->getActors()); ?></span>
+                                //   metodo ??, se a sinistra è null allora mostro quello a destra quindi []
+                                if (($movie->getCast()?->getActors() ?? [])) : ?>
+                                    <!-- metodo implode per stampare actors separati da virgola -->
+                                    <!-- aggiungo metodo statico toUpperCase -->
+                                    <span><?php echo UpperCase::toUpperCase(implode(', ', $movie->getCast()->getActors()));  ?></span>
                                 <?php else : ?>
                                     N/A.
                                 <?php endif; ?>
                             </li>
                             <li> Genere:
                                 <?php
-                                // per far funzionare nullsafe creo variabile cast e genre fuori da count
-                                $genre = $movie->getGenre();
-                                if ($genre && count($genre->getGenres())) : ?>
+                                //   metodo ??, se a sinistra è null allora mostro quello a destra quindi []
+                                if (($movie->getGenre()?->getGenres() ?? [])) : ?>
                                     <!-- metodo implode per stampare generi separati da virgola -->
                                     <!-- aggiungo metodo statico toUpperCase -->
-                                    <span><?php echo UpperCase::toUpperCase(implode(', ', $genre->getGenres()));  ?></span>
+                                    <span><?php echo UpperCase::toUpperCase(implode(', ', $movie->getGenre()->getGenres()));  ?></span>
                                 <?php else : ?>
                                     N/A.
                                 <?php endif; ?>
