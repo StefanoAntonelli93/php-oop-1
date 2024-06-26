@@ -2,6 +2,7 @@
 // richiamo la classe Movie da Movie.php
 require_once __DIR__ . '/models/Movie.php';
 require_once __DIR__ . '/models/Genre.php';
+require_once __DIR__ . '/models/Actor.php';
 
 
 // messaggio di errore inizialmente è vuoto
@@ -12,7 +13,7 @@ try {
     // istanze
     // movie 1
 
-    $movie1 = new Movie('Shrek', 2001, $genre1);
+    $movie1 = new Movie('Shrek', 2001, $genre1, $cast1);
     $movie1->setVote(8);
     // $movie1->setGenre('Animation');
     $movie1->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
@@ -25,7 +26,7 @@ try {
 
 
     // movie 2
-    $movie2 = new Movie('Shrek 2', 2004, $genre9);
+    $movie2 = new Movie('Shrek 2', 2004, $genre9, $cast2);
     $movie2->setVote(8);
     // $movie2->setGenre('Animation', 'Comedy');
     $movie2->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
@@ -37,7 +38,7 @@ try {
     Donkey and Dragon enter, and Dragon eats Farquaad. Shrek and Fiona kiss and Fiona is permanently turned into an ogre. Shrek gets his swamp back, and the two marry there. After a karaoke party, the newlyweds set off on their honeymoon. ');
 
     // movie 3
-    $movie3 = new Movie('Shrek the Third', 2007, $genre2);
+    $movie3 = new Movie('Shrek the Third', 2007, $genre2, $cast3);
     $movie3->setVote(7);
     // $movie3->setGenre('Animation', 'Comedy');
     $movie3->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
@@ -49,7 +50,7 @@ try {
     Donkey and Dragon enter, and Dragon eats Farquaad. Shrek and Fiona kiss and Fiona is permanently turned into an ogre. Shrek gets his swamp back, and the two marry there. After a karaoke party, the newlyweds set off on their honeymoon. ');
 
     // movie 4
-    $movie4 = new Movie('Shrek Forever After', 2010, $genre8);
+    $movie4 = new Movie('Shrek Forever After', 2010, $genre8, $cast4);
     $movie4->setVote(8);
     // $movie4->setGenre('Animation', 'Family', 'Comedy');
     $movie4->setPlot('Shrek, a solitary ogre, is angered when fairy tale creatures are sent to live in his swamp ordered by Lord Farquaad. He befriends a talking donkey named Donkey, and they set off to meet with Farquaad.
@@ -102,10 +103,17 @@ try {
                             <li>
                                 Titolo: <span class="fw-bold"><?php echo $movie->getTitle(); ?></span>
                             </li>
+                            <!-- inserisco actors separati da virgola con implode e ciclo if -->
+                            <li>
+                                Cast:<?php if (count($movie->getCast()?->getActors())) : ?>
+                                <span><?php echo implode(', ', $movie->getCast()?->getActors()); ?></span>
+                            <?php endif ?>
+                            </li>
                             <li> Genere:
-                                <?php if (count($movie->getGenre()->getGenres())) : ?>
+                                <?php if (count($movie->getGenre()?->getGenres())) : ?>
                                     <!-- metodo implode per stampare generi separati da virgola -->
-                                    <span><?php echo implode(', ', $movie->getGenre()->getGenres()); ?></span>
+                                    <!-- NULLSAFE OPERATOR (?) SE ESISTE ALLORA prendi getGenres altrimenti NULL-->
+                                    <span><?php echo implode(', ', $movie->getGenre()?->getGenres()); ?></span>
                                 <?php endif; ?>
                             </li>
                             <li>

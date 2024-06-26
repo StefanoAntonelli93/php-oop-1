@@ -1,22 +1,25 @@
 <?php
 class Genre
 {
+    // inizializzo array vuoto per genre
     private $genres = [];
-
+    // costruttore
     public function __construct(string ...$_genres)
     {
         $this->genres = $_genres;
     }
+    // getter
     public function getGenres(): array
     {
         return $this->genres;
     }
+    // setter
     public function setGenres(string $_genres): void
     {
         $this->genres[] = $_genres;
     }
 }
-
+// nuove istanze
 $genre1 = new Genre('Avventura', 'Comedy', 'Fantasy');
 $genre2 = new Genre('Comedy', 'Thriller', 'Drama');
 $genre3 = new Genre('Drama');
